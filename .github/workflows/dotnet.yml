@@ -53,7 +53,7 @@ jobs:
     needs: dockerBuildPush
     environment:
       name: dev
-      url: https://aqzjinqxvt56kmpnpreg-dev.azurewebsites.net/
+      url: https://aqzjinqxvt56k-dev.azurewebsites.net/
     steps:
       - name: 'Login via Azure CLI'
         uses: azure/login@v2.1.1
@@ -61,7 +61,7 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - uses: azure/webapps-deploy@v2
         with:
-          app-name: 'aqzjinqxvt56kmpnpreg-dev'
+          app-name: 'aqzjinqxvt56k-dev'
           images: aqzjinqxvt56kmpnpreg.azurecr.io/techexcel/dotnetcoreapp:${{github.run_number}}
 
   deploy-to-test:
@@ -69,7 +69,7 @@ jobs:
     needs: deploy-to-dev
     environment:
       name: test
-      url: https://aqzjinqxvt56kmpnpreg-test.azurewebsites.net/
+      url: https://aqzjinqxvt56k-test.azurewebsites.net/
     steps:
     - uses: actions/checkout@v3
     - name: 'Login via Azure CLI'
@@ -78,7 +78,7 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     - uses: azure/webapps-deploy@v2
       with:
-        app-name: '{your_prefix}-test'
+        app-name: 'aqzjinqxvt56k-test'
         images: aqzjinqxvt56kmpnpreg.azurecr.io/techexcel/dotnetcoreapp:${{github.run_number}}
 
   deploy-to-prod:
@@ -86,7 +86,7 @@ jobs:
     needs: deploy-to-test
     environment:
       name: prod
-      url: https://aqzjinqxvt56kmpnpreg-prod.azurewebsites.net/
+      url: https://aqzjinqxvt56k-prod.azurewebsites.net/
     steps:
     - uses: actions/checkout@v3
     - name: 'Login via Azure CLI'
@@ -95,6 +95,6 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     - uses: azure/webapps-deploy@v2
       with:
-        app-name: '{your_prefix}-prod'
+        app-name: 'aqzjinqxvt56k-prod'
         images: aqzjinqxvt56kmpnpreg.azurecr.io/techexcel/dotnetcoreapp:${{github.run_number}}
         
