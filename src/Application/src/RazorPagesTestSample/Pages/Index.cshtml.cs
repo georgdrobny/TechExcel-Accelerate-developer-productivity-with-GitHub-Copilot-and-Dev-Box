@@ -94,7 +94,11 @@ namespace RazorPagesTestSample.Pages
 
         public static void WriteToDirectory(ZipArchiveEntry entry, string destDirectory)
         {
-            string destFileName = Path.Combine(destDirectory, entry.FullName);
+            string destFileName = Path.GetFullPath(Path.Combine(destDirectory, entry.FullName));
+            if (!destFileName.StartsWith(destDirectory))
+            {
+                throw new InvalidOperationException("Invalid entry path.");
+            }
             entry.ExtractToFile(destFileName);
         }
     }
