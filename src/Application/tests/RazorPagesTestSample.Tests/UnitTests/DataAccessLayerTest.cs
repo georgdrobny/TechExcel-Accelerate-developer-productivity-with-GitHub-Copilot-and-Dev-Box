@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -135,7 +136,7 @@ namespace RazorPagesTestSample.Tests.UnitTests
         [InlineData(250, true)]
         [InlineData(251, false)]
         [InlineData(300, false)]
-        public async Task AddMessageAsync_TestMessageLength(int messageLength, bool expectedValidMessage)
+        public void AddMessageAsync_TestMessageLength(int messageLength, bool expectedValidMessage)
         {
             using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
             {
