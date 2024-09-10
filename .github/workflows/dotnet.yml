@@ -33,7 +33,7 @@ jobs:
         dotnet build --no-restore ./src/Application/src/RazorPagesTestSample/RazorPagesTestSample.csproj
         dotnet build --no-restore ./src/Application/tests/RazorPagesTestSample.Tests/RazorPagesTestSample.Tests.csproj
     - name: Test
-      run: dotnet test --no-build --verbosity normal ./src/Application/src/RazorPagesTestSample/RazorPagesTestSample.csproj
+      run: dotnet test --no-build --verbosity normal ./src/Application/tests/RazorPagesTestSample.Tests/RazorPagesTestSample.Tests.csproj
       
   dockerBuildPush:
     runs-on: ubuntu-latest
